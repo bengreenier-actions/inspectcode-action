@@ -8,9 +8,18 @@ inputs:
     solution:
         description: 'Path to your solution file, ex: MyProject.sln'
         required: true
+    include:
+        description: 'Include flag'
+        required: false
+    exclude:
+        description: 'Exclude flag'
+        required: false
 runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
         - ${{ inputs.solution }}
         - '-o=report.xml'
+        - '--include="${{ inputs.include }}"'
+        - '--exclude="${{ inputs.exclude }}"'
+  
